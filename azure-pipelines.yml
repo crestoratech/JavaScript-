@@ -12,6 +12,7 @@ pool:
 variables:
   dockerHubServiceConnection: 'docker_service_connection'
   imageName: 'Javascript_image'
+  system.debug: 'true'
 
 steps:
 - task: NodeTool@0
