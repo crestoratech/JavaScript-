@@ -9,6 +9,10 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  dockerHubServiceConnection: 'docker_service_connection'
+  imageName: 'Javascript_image'
+
 steps:
 - task: NodeTool@0
   inputs:
@@ -21,4 +25,10 @@ steps:
     npm test
   displayName: 'npm installing depedencies and build'
   
-  
+- task: Docker@2
+  inputs:
+     containerRegistry: $(dockerHubServiceConnection)
+     repository: $(imageName)
+     command: 'buildAndPush'
+     Dockerfile: '**/Dockerfile'
+  displayName: "Build and push of Docker image"
