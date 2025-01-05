@@ -32,4 +32,7 @@ steps:
      repository: $(imageName)
      command: 'buildAndPush'
      Dockerfile: '**/Dockerfile'
+     tags: |
+       $(Build.BuildId)
+       latest
   displayName: "Build and push of Docker image"
